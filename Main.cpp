@@ -177,6 +177,16 @@ void consumer()
 }
 #endif 
 
+
+void EXIT()
+{
+	if (SharedMembers::buffer.empty() && SharedMembers::file_EOF_status)
+	{
+		std::cout << "EOF & buffer is empty | Works done" << std::endl;
+	}
+	exit(0);
+}
+
 void duration()
 {
 	std::chrono::time_point<std::chrono::system_clock> start, end;
@@ -185,13 +195,10 @@ void duration()
 	end = std::chrono::system_clock::now();
 	std::chrono::duration<double> elapsed_time = end - start;
 
-	if (SharedMembers::buffer.empty() && SharedMembers::file_EOF_status)
-	{
-		std::cout << "EOF & buffer is empty | works done" << std::endl;
-	}
+	
 	std::cout << "Elapsed time: " << elapsed_time.count() << std::endl;
 	
-	exit(0);
+	EXIT();
 }
 
 
